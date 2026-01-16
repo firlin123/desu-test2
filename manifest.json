@@ -1,15 +1,6 @@
 {
   "lastDownloaded": 42957228,
-  "daily": [],
-  "monthly": [
-    "20251201034556_monthly_42799494_42842055",
-    "20260101032233_monthly_42842056_42918841",
-    "20260116032258_monthly_42918842_42957228"
-  ],
-  "yearly": [
-    {
-      "name": "20251114215436_base_1_42799493",
-      "url": "https://archive.org/download/desuarchive_mlp_1_42799493_20251114215436/base_1_42799493.ndjson.gz"
-    }
-  ]
+  "daily": ["20120218053950_daily_1_33824"],
+  "monthly": [],
+  "yearly": []
 }
