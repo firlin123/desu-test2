@@ -1,13 +1,15 @@
 {
   "lastDownloaded": 42957228,
   "daily": [],
-  "monthly": [
-    "20140217053951_monthly_8355616_16342348"
-  ],
+  "monthly": [],
   "yearly": [
     {
       "name": "20130217053952_yearly_1_8355615",
       "url": "https://archive.org/download/test1_202512/20130217053952_yearly_1_8355615.ndjson.xz"
+    },
+    {
+      "name": "20140217053952_yearly_8355616_16342348",
+      "url": "https://archive.org/download/test1_202512/20140217053952_yearly_8355616_16342348.ndjson.xz"
     }
   ]
 }
