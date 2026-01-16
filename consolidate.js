@@ -269,8 +269,8 @@ function consolidateMonthly() {
     // Increment endTS by one second
     const endDate = new Date(`${endTS.slice(0, 4)}-${endTS.slice(4, 6)}-${endTS.slice(6, 8)} ${endTS.slice(8, 10)}:${endTS.slice(10, 12)}:${endTS.slice(12, 14)} UTC`);
     endDate.setUTCSeconds(endDate.getUTCSeconds() + 1);
+    const nextDate = new Date(`${getDayLabel(endTS)} ${pad(BASE_HOUR)}:${pad(BASE_MINUTE)}:${pad(BASE_SECOND)}`);
     endTS = `${endDate.getUTCFullYear()}${pad(endDate.getUTCMonth() + 1)}${pad(endDate.getUTCDate())}${pad(endDate.getUTCHours())}${pad(endDate.getUTCMinutes())}${pad(endDate.getUTCSeconds())}`;
-    const nextDate = new Date(endDate);
     nextDate.setUTCDate(nextDate.getUTCDate() + 1);
     if (dailyCount < MONTHLY_THRESHOLD && nextDate.getUTCDate() !== BASE_DAY) {
         return true;
@@ -401,19 +401,19 @@ function consolidateYearly() {
     // Increment endTS by one second
     const endDate = new Date(`${endTS.slice(0, 4)}-${endTS.slice(4, 6)}-${endTS.slice(6, 8)} ${endTS.slice(8, 10)}:${endTS.slice(10, 12)}:${endTS.slice(12, 14)} UTC`);
     endDate.setUTCSeconds(endDate.getUTCSeconds() + 1);
+    const nextDate = new Date(`${getMonthLabel(endTS)}-${pad(BASE_DAY)} ${pad(BASE_HOUR)}:${pad(BASE_MINUTE)}:${pad(BASE_SECOND)}`);
     endTS = `${endDate.getUTCFullYear()}${pad(endDate.getUTCMonth() + 1)}${pad(endDate.getUTCDate())}${pad(endDate.getUTCHours())}${pad(endDate.getUTCMinutes())}${pad(endDate.getUTCSeconds())}`;
-    const nextDate = new Date(endDate);
-    nextDate.setUTCDate(nextDate.getUTCDate() + 1);
-    if (monthlyCount < YEARLY_THRESHOLD && (nextDate.getUTCMonth() + 1 !== BASE_MONTH || nextDate.getUTCDate() < BASE_DAY)) {
+    nextDate.setUTCMonth(nextDate.getUTCMonth() + 1);
+    if (monthlyCount < YEARLY_THRESHOLD && nextDate.getUTCMonth() !== BASE_MONTH) {
         return true;
     }
 
     // Allow archives 2 days to settle before the reCheck
-    const graceEndTS = new Date(endDate);
-    graceEndTS.setUTCDate(graceEndTS.getUTCDate() + 2);
+    const graceEnd = new Date(endDate);
+    graceEnd.setUTCDate(graceEnd.getUTCDate() + 2);
     const currTS = new Date();
 
-    if (currTS.getTime() < graceEndTS.getTime()) {
+    if (currTS.getTime() < graceEnd.getTime()) {
         return true;
     }
 
